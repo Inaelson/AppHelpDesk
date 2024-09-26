@@ -48,6 +48,14 @@
 
                 <?php } ?>
 
+                <?php if(isset($_GET['login']) && $_GET['login'] == 'error2'){ ?>
+
+                   <div class="text-danger">
+                    Faça login novamente.
+                  </div>
+
+                <?php } ?>
+
                 <button class="btn btn-lg btn-info btn-block" type="submit">Entrar</button>
               </form>
             </div>

@@ -1,3 +1,13 @@
+<?php
+
+  session_start();
+
+  if(!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] != 'SIM'){
+    header('Location: index.php?login=error2');
+
+  }
+?>
+
 <html>
   <head>
     <meta charset="utf-8" />
@@ -23,7 +33,7 @@
       </a>
     </nav>
 
-    <div class="container">    
+    <div class="container">
       <div class="row">
 
         <div class="card-abrir-chamado">
@@ -34,13 +44,13 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  
+
                   <form>
                     <div class="form-group">
                       <label>Título</label>
                       <input type="text" class="form-control" placeholder="Título">
                     </div>
-                    
+
                     <div class="form-group">
                       <label>Categoria</label>
                       <select class="form-control">
@@ -51,7 +61,7 @@
                         <option>Rede</option>
                       </select>
                     </div>
-                    
+
                     <div class="form-group">
                       <label>Descrição</label>
                       <textarea class="form-control" rows="3"></textarea>
