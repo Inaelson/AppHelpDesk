@@ -1,6 +1,7 @@
 <?php
 
     // $_POST
+    session_start();
 
 
     $arquivo  = fopen('arquivo.txt', 'a');
@@ -9,7 +10,7 @@
        $_POST[$chave] = str_replace('#', '-', $campo);
     }
 
-    $texto = implode('#', $_POST).PHP_EOL;
+    $texto = $_SESSION['id'].'#'.implode('#', $_POST).PHP_EOL;
 
     fwrite($arquivo, $texto);
 
