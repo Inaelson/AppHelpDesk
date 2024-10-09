@@ -8,7 +8,22 @@ $arquivo = fopen('arquivo.txt', 'r');
 
 while(!feof($arquivo)) {
   $registro = fgets($arquivo);
-  $chamados[] = $registro;
+  $verificando_chamado = verificarChamado($registro, $_SESSION['id']);
+
+  if($verificando_chamado != null && count($verificando_chamado) > 3){
+    $chamados[] = $verificando_chamado;
+  }
+
+}
+
+function verificarChamado($registro, $id){
+  $verificar_registro = explode('#', $registro);
+  $registro_valido = null;
+
+  if($verificar_registro[0] == $id || $_SESSION['perfil_id'] == 1){
+    return $registro_valido = $verificar_registro;
+  }
+  return $registro_valido;
 
 }
 
@@ -60,26 +75,11 @@ fclose($arquivo);
 
             <?php foreach($chamados as $chamado) { ?>
 
-              <?php
-
-              $chamado_dados = explode('#', $chamado);
-
-              if($_SESSION['perfil_id'] == 2){
-                if($_SESSION['id'] != $chamado_dados[0]){
-                  continue;
-                }
-              }
-
-              if(count($chamado_dados) < 3) {
-                continue;
-              }
-
-              ?>
               <div class="card mb-3 bg-light">
                 <div class="card-body">
-                  <h5 class="card-title"><?=$chamado_dados[1]?></h5>
-                  <h6 class="card-subtitle mb-2 text-muted"><?=$chamado_dados[2]?></h6>
-                  <p class="card-text"><?=$chamado_dados[3]?></p>
+                  <h5 class="card-title"><?=$chamado[1]?></h5>
+                  <h6 class="card-subtitle mb-2 text-muted"><?=$chamado[2]?></h6>
+                  <p class="card-text"><?=$chamado[3]?></p>
 
                 </div>
               </div>
